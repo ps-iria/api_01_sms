@@ -25,8 +25,8 @@ def get_status(user_id):
 def send_sms(sms_text, client):
     message = client.messages.create(
         body=sms_text,
-        from_=os.environ['TWILIO_NUMBER'],
-        to=os.environ['MY_NUMBER']
+        from_=os.environ['NUMBER_FROM'],
+        to=os.environ['NUMBER_TO']
     )
     return message.sid
 
