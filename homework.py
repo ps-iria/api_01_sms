@@ -10,15 +10,14 @@ load_dotenv()
 
 def get_status(user_id):
     params = {
-        "user_id": user_id,
+        "user_ids": user_id,
         "v": "5.126",
         "access_token": os.environ['access_token'],
-        "fields": {
-            "online"
-        }
+        "fields": "online"
     }
-    status = requests.post('https://api.vk.com/method/users.get', params)
-    status = status.json()['response'][0]['online']
+    status = requests.post('https://api.vk.com/method/users.get',
+                           params=params)
+    status = status.json()["response"][0]["online"]
     return status
 
 
@@ -36,8 +35,6 @@ def sms_sender(sms_text):
 
 
 if __name__ == '__main__':
-
-
     vk_id = input('Введите id ')
     while True:
         if get_status(vk_id) == 1:
