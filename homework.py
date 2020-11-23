@@ -22,7 +22,11 @@ def get_status(user_id):
     return status
 
 
-def send_sms(sms_text, client):
+def sms_sender(sms_text):
+    account_sid = os.environ['TWILIO_ACCOUNT_SID']
+    auth_token = os.environ['TWILIO_AUTH_TOKEN']
+    client = Client(account_sid, auth_token)
+
     message = client.messages.create(
         body=sms_text,
         from_=os.environ['NUMBER_FROM'],
@@ -32,13 +36,11 @@ def send_sms(sms_text, client):
 
 
 if __name__ == '__main__':
-    account_sid = os.environ['TWILIO_ACCOUNT_SID']
-    auth_token = os.environ['TWILIO_AUTH_TOKEN']
-    client = Client(account_sid, auth_token)
+
 
     vk_id = input('Введите id ')
     while True:
         if get_status(vk_id) == 1:
-            send_sms(f'{vk_id} сейчас онлайн!', client)
+            sms_sender(f'{vk_id} сейчас онлайн!')
             break
         time.sleep(5)
