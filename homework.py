@@ -11,7 +11,7 @@ def get_status(user_id):
     params = {
         "user_ids": user_id,
         "v": "5.126",
-        "access_token": os.environ['ACCESS_TOKEN'],
+        "access_token": os.environ['VK_TOKEN'],
         "fields": "online"
     }
     status = requests.post('https://api.vk.com/method/users.get',
