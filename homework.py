@@ -1,7 +1,6 @@
 import os
-import time
-
 import requests
+import time
 from dotenv import load_dotenv
 from twilio.rest import Client
 
@@ -12,7 +11,7 @@ def get_status(user_id):
     params = {
         "user_ids": user_id,
         "v": "5.126",
-        "access_token": os.environ['access_token'],
+        "access_token": os.environ['ACCESS_TOKEN'],
         "fields": "online"
     }
     status = requests.post('https://api.vk.com/method/users.get',
